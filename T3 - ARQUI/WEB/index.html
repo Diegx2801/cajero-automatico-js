@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>🏡 Monitoreo y Control Ambiental para el Cultivo de Fresa en la Comunidad Agrícola de Laredo, Trujillo</title>
+    <link rel="stylesheet" href="style.css"> 
+
+    <!-- Librerías externas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🏡 Monitoreo y Control Ambiental para el Cultivo de Fresa en la Comunidad Agrícola de Laredo, Trujillo</h1>
+
+        <div id="mqtt-status" class="status disconnected">
+            Estado del MQTT: **Desconectado**
+        </div>
+        
+        <h2>📊 Datos de Sensores</h2>
+        <div class="grid-container">
+            
+            <!-- Panel de Temperatura -->
+            <div class="data-card" data-sensor="temperatura">
+                <h3>🌡️ Temperatura del Aire</h3>
+                <p><span id="temperatura-valor" class="value">--</span><span class="unit"> °C</span></p>
+                <p class="update-time" id="temperatura-tiempo">--</p>
+                <div class="chart-wrapper">
+                    <canvas id="chart-temperatura"></canvas>
+                </div>
+            </div>
+
+            <!-- Panel de Humedad -->
+            <div class="data-card" data-sensor="humedad-tierra">
+                <h3>💧 Humedad de la Tierra</h3>
+                <p><span id="humedad-tierra-valor" class="value">--</span><span class="unit"> %</span></p>
+                <p class="update-time" id="humedad-tierra-tiempo">--</p>
+                <div class="chart-wrapper">
+                    <canvas id="chart-humedad"></canvas>
+                </div>
+            </div>
+
+            <!-- Panel de Nivel de Agua -->
+            <div class="data-card" data-sensor="nivel-agua">
+                <h3>🌊 Nivel del Tanque de Agua</h3>
+                <p><span id="nivel-agua-valor" class="value">--</span><span class="unit"> %</span></p>
+                <p class="update-time" id="nivel-agua-tiempo">--</p>
+                <div class="chart-wrapper">
+                    <canvas id="chart-nivel"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>⚙️ Control de Actuadores</h2>
+        <div class="grid-container actuadores-grid"> 
+            
+            <div class="data-card control-card">
+                <h3>💧 Bomba de Riego</h3>
+                <button class="control-button on-button" onclick="controlBomba('ON')">Encender</button>
+                <button class="control-button off-button" onclick="controlBomba('OFF')">Apagar</button>
+            </div>
+
+            <div class="data-card control-card">
+                <h3>💨 Ventilador</h3>
+                <button class="control-button on-button" onclick="controlVentilador('ON')">Encender</button>
+                <button class="control-button off-button" onclick="controlVentilador('OFF')">Apagar</button>
+            </div>
+
+            <div class="data-card control-card">
+                <h3>🎮 Modo Manual</h3>
+                <button class="control-button on-button" onclick="controlManual('ON')">Activar</button>
+                <button class="control-button off-button" onclick="controlManual('OFF')">Desactivar</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script> 
+</body>
+</html>
